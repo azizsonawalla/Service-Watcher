@@ -20,8 +20,7 @@ class ServiceWatcher:
 			current_status = self.check_host_status(self.hosts[host_number], "3")
 			if current_status != self.hosts[host_number].get_last_status():
 				self.hosts[host_number].set_last_status(current_status)
-				#slack.notify_host_status_change(host)
-				print("Status change: " + self.hosts[host_number].get_name())
+				slack.send_message(host)
 				sys.stdout.flush()
 			time.sleep(interval)
 
